@@ -42,7 +42,6 @@ exports.category_update = (req, res) => {
     name_en: req.body.name_en,
     photo: newPhoto || "",
     date: req.body.date,
-    asd: "asd",
   };
   Category.findByIdAndUpdate({ _id: id }, { $set: editCategory })
     .then(() => res.json({ data: editCategory }))
