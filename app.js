@@ -8,9 +8,11 @@ require("dotenv").config();
 const port = process.env.PORT || 5000;
 const routes = require("./routes/index");
 
+app.set("view engine", "ejs");
+
 dbConnect();
 
-const server = http.createServer(app)
+const server = http.createServer(app);
 
 // config
 app.use(cors());
