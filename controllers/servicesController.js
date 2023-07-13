@@ -81,6 +81,7 @@ exports.services = async (req, res) => {
     .populate("category")
     .then((items) => {
       res.json({
+        asd: "asd",
         _meta: {
           page: parseInt(page),
           limit: parseInt(limit),
