@@ -136,6 +136,7 @@ exports.news = async (req, res) => {
           totalCount: pageCount,
         },
         data: items,
+        updated: true,
       });
     })
     .catch((err) => res.status(400).json(err));
