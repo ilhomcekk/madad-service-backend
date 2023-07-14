@@ -36,5 +36,6 @@ app.use("/", express.static("uploads"));
 
 server.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Updated`);
 });
 // "mongoose": "^7.3.1",
