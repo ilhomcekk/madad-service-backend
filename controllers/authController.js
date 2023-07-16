@@ -73,7 +73,9 @@ exports.login = async (req, res) => {
 // update route
 exports.login_update = async (req, res) => {
   const { name, password } = req.body;
-  const newLogin = { name: name, password: password };
+  const user1 = await Login.findOne({ name });
+  const isPasswordValid = await bcrypt.compare(password, user1.password);
+  const newLogin = { name: name, password: isPasswordValid };
   const user = await Login.findOneAndUpdate({}, { $set: newLogin })
     .then((data) => res.json({ success: true, data: data }))
     .catch(() => res.json({ success: false }));
