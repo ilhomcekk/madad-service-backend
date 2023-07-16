@@ -5,7 +5,7 @@ const app = express();
 const http = require("http");
 const dbConnect = require("./database");
 require("dotenv").config();
-const port = process.env.PORT || 443;
+const port = process.env.PORT || 5000;
 const routes = require("./routes/index");
 
 app.set("view engine", "ejs");
