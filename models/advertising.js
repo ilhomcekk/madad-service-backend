@@ -28,6 +28,11 @@ const advertisingSchema = {
     trim: true,
   },
   photo: String,
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category",
+    required: true,
+  },
   link: String,
   date: String,
 };

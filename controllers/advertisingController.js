@@ -10,6 +10,7 @@ exports.advertising_create = (req, res) => {
     description_uz: req.body.description_uz,
     description_en: req.body.description_en,
     photo: req.file ? req.file.filename : "",
+    category: req.body.category_id,
     link: req.body.link,
     date: req.body.date,
   });
@@ -48,6 +49,7 @@ exports.advertising_update = (req, res) => {
     description_uz: req.body.description_uz,
     description_en: req.body.description_en,
     photo: newPhoto || "",
+    category: req.body.category_id,
     link: req.body.link,
     date: req.body.date,
   };
@@ -60,12 +62,16 @@ exports.advertising_update = (req, res) => {
 exports.advertising_detail = (req, res) => {
   const id = req.params.id;
   Advertising.findById(id)
+    .populate("category")
     .then((detail) => res.json({ data: detail }))
     .catch((err) => res.status(400).json("Error: " + err));
 };
 
 // read route
 exports.advertising = async (req, res) => {
+  const category_id = req.params.id;
+  const option = { category: category_id };
+  const list = await Advertising.find(option);
   const page = req.query.page || 1;
   const limit = req.query.limit || 12;
   const pageCount = await Advertising.find({}).estimatedDocumentCount();
@@ -77,6 +83,7 @@ exports.advertising = async (req, res) => {
     .sort({ _id: -1 })
     .skip(startIndex)
     .limit(limit)
+    .populate("category")
     .then((items) => {
       res.json({
         _meta: {
