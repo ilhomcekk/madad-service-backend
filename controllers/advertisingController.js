@@ -69,9 +69,6 @@ exports.advertising_detail = (req, res) => {
 
 // read route
 exports.advertising = async (req, res) => {
-  const category_id = req.params.id;
-  const option = { category: category_id };
-  const list = await Advertising.find(option);
   const page = req.query.page || 1;
   const limit = req.query.limit || 12;
   const pageCount = await Advertising.find({}).estimatedDocumentCount();
@@ -80,6 +77,36 @@ exports.advertising = async (req, res) => {
   const endIndex = page * limit;
 
   Advertising.find()
+    .sort({ _id: -1 })
+    .skip(startIndex)
+    .limit(limit)
+    .populate("category")
+    .then((items) => {
+      res.json({
+        _meta: {
+          page: parseInt(page),
+          limit: parseInt(limit),
+          pageCount: mathPageCount,
+          totalCount: pageCount,
+        },
+        data: items,
+      });
+    })
+    .catch((err) => res.status(400).json(err));
+};
+
+exports.advertising_by_category = async (req, res) => {
+  const category_id = req.params.id;
+  const option = { category: category_id };
+  const list = await Advertising.find(option);
+  const page = req.query.page || 1;
+  const limit = req.query.limit || 12;
+  const mathPageCount = Math.ceil(pageCount / limit);
+  const pageCount = list.length;
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+
+  await Advertising.find(option)
     .sort({ _id: -1 })
     .skip(startIndex)
     .limit(limit)

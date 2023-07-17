@@ -27,4 +27,7 @@ router.get("/advertisings/:id", advertising.advertising_detail);
 // read route
 router.get("/advertisings", advertising.advertising);
 
+// read route
+router.get("/advertisings/category_id/:id", advertising.advertising_by_category);
+
 module.exports = router;
