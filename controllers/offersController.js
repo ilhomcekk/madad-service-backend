@@ -6,6 +6,7 @@ exports.offers_create = (req, res) => {
     name_ru: req.body.name_ru,
     name_uz: req.body.name_uz,
     name_en: req.body.name_en,
+    category: req.body.category_id,
     description_ru: req.body.description_ru,
     description_uz: req.body.description_uz,
     description_en: req.body.description_en,
@@ -43,6 +44,7 @@ exports.offers_update = (req, res) => {
     name_ru: req.body.name_ru,
     name_uz: req.body.name_uz,
     name_en: req.body.name_en,
+    category: req.body.category_id,
     description_ru: req.body.description_ru,
     description_uz: req.body.description_uz,
     description_en: req.body.description_en,
@@ -58,6 +60,7 @@ exports.offers_update = (req, res) => {
 exports.offers_detail = (req, res) => {
   const id = req.params.id;
   Offers.findById(id)
+    .populate("category")
     .then((detail) => res.json({ data: detail }))
     .catch((err) => res.status(400).json("Error: " + err));
 };
@@ -75,6 +78,7 @@ exports.offers = async (req, res) => {
     .sort({ _id: -1 })
     .skip(startIndex)
     .limit(limit)
+    .populate("category")
     .then((items) => {
       res.json({
         _meta: {
