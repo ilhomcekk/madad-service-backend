@@ -27,6 +27,11 @@ const offersSchema = {
     type: String,
     trim: true,
   },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category",
+    required: true,
+  },
   photo: String,
   date: String,
 };

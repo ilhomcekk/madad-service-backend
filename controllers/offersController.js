@@ -88,3 +88,32 @@ exports.offers = async (req, res) => {
     })
     .catch((err) => res.status(400).json(err));
 };
+
+exports.offers_by_category = async (req, res) => {
+  const category_id = req.params.id;
+  const option = { category: category_id };
+  const list = await Offers.find(option);
+  const page = req.query.page || 1;
+  const limit = req.query.limit || 12;
+  const mathPageCount = Math.ceil(pageCount / limit);
+  const pageCount = list.length;
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+
+  await Offers.find(option)
+    .sort({ _id: -1 })
+    .skip(startIndex)
+    .limit(limit)
+    .then((items) => {
+      res.json({
+        _meta: {
+          page: parseInt(page),
+          limit: parseInt(limit),
+          pageCount: mathPageCount,
+          totalCount: pageCount,
+        },
+        data: items,
+      });
+    })
+    .catch((err) => res.status(400).json(err));
+};

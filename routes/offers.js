@@ -19,4 +19,7 @@ router.get("/offers/:id", offers.offers_detail);
 // read route
 router.get("/offers", offers.offers);
 
+// read route
+router.get("/offers/category_id/:id", offers.offers_by_category);
+
 module.exports = router;
