@@ -110,7 +110,6 @@ exports.advertising_by_category = async (req, res) => {
     .sort({ _id: -1 })
     .skip(startIndex)
     .limit(limit)
-    .populate("category")
     .then((items) => {
       res.json({
         _meta: {
