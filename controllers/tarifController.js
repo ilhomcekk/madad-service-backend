@@ -7,6 +7,7 @@ exports.tarif_create = async (req, res) => {
     name_uz: req.body.name_uz,
     name_en: req.body.name_en,
     category: req.body.category_id,
+    service: req.body.service_id,
     tariffs: req.body.tariffs,
     price: req.body.price,
     date: req.body.date,
@@ -35,6 +36,7 @@ exports.tarif_update = (req, res) => {
     tariffs: req.body.tariffs,
     price: req.body.price,
     category: req.body.category,
+    service: req.body.service_id,
     date: req.body.date,
   };
   Tarif.findByIdAndUpdate({ _id: id }, { $set: editTarif })
@@ -47,6 +49,7 @@ exports.tarif_detail = async (req, res) => {
   const id = req.params.id;
   await Tarif.findById(id)
     .populate("category")
+    .populate("service")
     .then((detail) => res.json({ data: detail }))
     .catch((err) => res.status(400).json("Error: " + err));
 };
@@ -95,6 +98,7 @@ exports.tarif = async (req, res) => {
     .skip(startIndex)
     .limit(limit)
     .populate("category")
+    .populate("service")
     .then((items) => {
       res.json({
         _meta: {
