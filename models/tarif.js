@@ -23,6 +23,9 @@ const tarifSchema = {
     ref: "Category",
     required: true,
   },
+  service_id: {
+    type: String,
+  },
   tariffs: [
     {
       type: String,

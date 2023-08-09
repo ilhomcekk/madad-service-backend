@@ -7,6 +7,7 @@ exports.tarif_create = async (req, res) => {
     name_uz: req.body.name_uz,
     name_en: req.body.name_en,
     category: req.body.category_id,
+    service_id: req.body.service_id,
     tariffs: req.body.tariffs,
     price: req.body.price,
     date: req.body.date,
