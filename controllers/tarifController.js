@@ -36,6 +36,7 @@ exports.tarif_update = (req, res) => {
     tariffs: req.body.tariffs,
     price: req.body.price,
     category: req.body.category,
+    service_id: req.body.service_id,
     date: req.body.date,
   };
   Tarif.findByIdAndUpdate({ _id: id }, { $set: editTarif })
