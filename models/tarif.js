@@ -31,6 +31,16 @@ const tarifSchema = {
       type: String,
     },
   ],
+  tariffs_uz: [
+    {
+      type: String,
+    },
+  ],
+  tariffs_en: [
+    {
+      type: String,
+    },
+  ],
   price: {
     type: String,
   },

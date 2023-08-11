@@ -9,6 +9,8 @@ exports.tarif_create = async (req, res) => {
     category: req.body.category_id,
     service_id: req.body.service_id,
     tariffs: req.body.tariffs,
+    tariffs_uz: req.body.tariffs_uz,
+    tariffs_en: req.body.tariffs_en,
     price: req.body.price,
     date: req.body.date,
   });
@@ -34,6 +36,8 @@ exports.tarif_update = (req, res) => {
     name_uz: req.body.name_uz,
     name_en: req.body.name_en,
     tariffs: req.body.tariffs,
+    tariffs_uz: req.body.tariffs_uz,
+    tariffs_en: req.body.tariffs_en,
     price: req.body.price,
     category: req.body.category,
     service_id: req.body.service_id,
