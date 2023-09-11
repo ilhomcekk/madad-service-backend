@@ -4,12 +4,10 @@ const mongoose = require("mongoose");
 const faqSchema = {
   question_ru: {
     type: String,
-    required: true,
     trim: true,
   },
   answer_ru: {
     type: String,
-    required: true,
     trim: true,
   },
   question_uz: {

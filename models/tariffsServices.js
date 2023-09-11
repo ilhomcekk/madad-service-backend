@@ -31,6 +31,9 @@ const tariffsServicesSchema = {
     ref: "Category",
     required: true,
   },
+  service_id: {
+    type: String,
+  },
   photo: String,
   date: String,
 };
