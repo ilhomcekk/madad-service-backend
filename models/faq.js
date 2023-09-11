@@ -5,10 +5,12 @@ const faqSchema = {
   question_ru: {
     type: String,
     trim: true,
+    required: true,
   },
   answer_ru: {
     type: String,
     trim: true,
+    required: true,
   },
   question_uz: {
     type: String,
