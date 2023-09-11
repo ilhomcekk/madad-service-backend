@@ -5,12 +5,10 @@ const faqSchema = {
   question_ru: {
     type: String,
     trim: true,
-    required: true,
   },
   answer_ru: {
     type: String,
     trim: true,
-    required: true,
   },
   question_uz: {
     type: String,
@@ -32,6 +30,6 @@ const faqSchema = {
 };
 
 // data model
-const Faq = mongoose.model("Faq", faqSchema);
+const Faq = mongoose.model("Faqs", faqSchema);
 
 module.exports = Faq;
