@@ -29,7 +29,6 @@ const tariffsServicesSchema = {
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
-    required: true,
   },
   service: {
     type: mongoose.Schema.Types.ObjectId,
