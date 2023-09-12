@@ -67,7 +67,7 @@ exports.tariffs_services_detail = async (req, res) => {
 
 exports.tariffs_services_by_service = async (req, res) => {
   const service_id = req.params.id;
-  const option = { service: service_id };
+  const option = { service_id: service_id };
   const products = await TariffsServices.find(option);
   const page = req.query.page || 1;
   const limit = req.query.limit || 12;

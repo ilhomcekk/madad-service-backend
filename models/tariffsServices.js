@@ -31,7 +31,7 @@ const tariffsServicesSchema = {
     ref: "Category",
   },
   service: {
-   type: String,
+    type: String,
   },
   photo: String,
   date: String,
