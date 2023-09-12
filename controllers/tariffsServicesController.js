@@ -9,7 +9,7 @@ exports.tariffs_services_create = async (req, res) => {
     description_ru: req.body.description_ru,
     description_uz: req.body.description_uz,
     description_en: req.body.description_en,
-    category: req.body.category_id,
+    service: req.body.service_id,
     photo: req.file ? req.file.filename : "",
     date: req.body.date,
   });
@@ -47,7 +47,7 @@ exports.tariffs_services_update = (req, res) => {
     description_ru: req.body.description_ru,
     description_uz: req.body.description_uz,
     description_en: req.body.description_en,
-    category: req.body.category_id,
+    service: req.body.service_id,
     photo: newPhoto || "",
     date: req.body.date,
   };
@@ -60,14 +60,14 @@ exports.tariffs_services_update = (req, res) => {
 exports.tariffs_services_detail = async (req, res) => {
   const id = req.params.id;
   await TariffsServices.findById(id)
-    .populate("category")
+    .populate("service")
     .then((detail) => res.json({ data: detail }))
     .catch((err) => res.status(400).json("Error: " + err));
 };
 
-exports.tariffs_services_by_category = async (req, res) => {
-  const category_id = req.params.id;
-  const option = { category: category_id };
+exports.tariffs_services_by_service = async (req, res) => {
+  const service_id = req.params.id;
+  const option = { service: service_id };
   const products = await TariffsServices.find(option);
   const page = req.query.page || 1;
   const limit = req.query.limit || 12;
@@ -78,15 +78,11 @@ exports.tariffs_services_by_category = async (req, res) => {
 
   await TariffsServices.find(option)
     .sort({ _id: -1 })
-    .skip(startIndex)
-    .limit(limit)
     .then((items) => {
       res.json({
         _meta: {
           page: parseInt(page),
           limit: parseInt(limit),
-          pageCount: mathPageCount,
-          totalCount: products.length,
         },
         data: items,
       });

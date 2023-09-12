@@ -29,7 +29,7 @@ router.get("/tariffs/services", tariffs.tariffs_services);
 
 router.get(
   "/tariffs/services/category_id/:id",
-  tariffs.tariffs_services_by_category
+  tariffs.tariffs_services_by_service
 );
 
 module.exports = router;
