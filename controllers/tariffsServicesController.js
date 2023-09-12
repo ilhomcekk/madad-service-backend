@@ -60,7 +60,7 @@ exports.tariffs_services_update = (req, res) => {
 exports.tariffs_services_detail = async (req, res) => {
   const id = req.params.id;
   await TariffsServices.findById(id)
-    .populate("service")
+    .populate("category")
     .then((detail) => res.json({ data: detail }))
     .catch((err) => res.status(400).json("Error: " + err));
 };

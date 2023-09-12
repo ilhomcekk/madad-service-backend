@@ -31,9 +31,7 @@ const tariffsServicesSchema = {
     ref: "Category",
   },
   service: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Service",
-    required: true,
+   type: String,
   },
   photo: String,
   date: String,
