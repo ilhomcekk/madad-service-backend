@@ -9,7 +9,7 @@ exports.tariffs_services_create = async (req, res) => {
     description_ru: req.body.description_ru,
     description_uz: req.body.description_uz,
     description_en: req.body.description_en,
-    service: req.body.service_id,
+    serviceId: req.body.service_id,
     photo: req.file ? req.file.filename : "",
     date: req.body.date,
   });
@@ -76,6 +76,7 @@ exports.tariffs_services_by_service = async (req, res) => {
   const endIndex = page * limit;
 
   await TariffsServices.find()
+    .populate("serviceId")
     .sort({ _id: -1 })
     .then((items) => {
       res.json({
