@@ -67,7 +67,7 @@ exports.tariffs_services_detail = async (req, res) => {
 
 exports.tariffs_services_by_service = async (req, res) => {
   const service_id = req.params.id;
-  const products = await TariffsServices.find().populate("serviceId");
+  const products = await TariffsServices.find();
   const page = req.query.page || 1;
   const limit = req.query.limit || 12;
   const pageCount = products.length;
@@ -75,8 +75,7 @@ exports.tariffs_services_by_service = async (req, res) => {
   const startIndex = (page - 1) * limit;
   const endIndex = page * limit;
 
-  await TariffsServices.findById(service_id)
-    .populate("serviceId")
+  await TariffsServices.find()
     .sort({ _id: -1 })
     .then((items) => {
       res.json({
