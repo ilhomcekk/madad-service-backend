@@ -47,7 +47,7 @@ exports.tariffs_services_update = (req, res) => {
     description_ru: req.body.description_ru,
     description_uz: req.body.description_uz,
     description_en: req.body.description_en,
-    service: req.body.service_id,
+    serviceId: req.body.service_id,
     photo: newPhoto || "",
     date: req.body.date,
   };
