@@ -69,6 +69,7 @@ exports.tariffs_services_by_service = async (req, res) => {
   const service_id = req.params.id;
 
   await TariffsServices.find({ serviceId: service_id })
+    .populate("serviceId")
     .sort({ _id: -1 })
     .then((items) => {
       res.json({
